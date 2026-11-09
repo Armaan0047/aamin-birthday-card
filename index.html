@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Gift For You ❤️</title>
+  <!-- Google Fonts matching the Canva template -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Fredoka:wght@500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Patrick+Hand&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --red-main: #c92a1d;
+      --red-dark: #8e1910;
+      --red-accent: #d84b35;
+      --cream-bg: #faf8f5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', sans-serif;
+      /* Red & White Gingham Picnic Pattern matching Canva template */
+      background-color: #ffffff;
+      background-image: 
+        linear-gradient(90deg, rgba(201, 42, 29, 0.55) 50%, transparent 50%),
+        linear-gradient(rgba(201, 42, 29, 0.55) 50%, transparent 50%);
+      background-size: 44px 44px;
+    }
+
+    /* Main Rounded Stage Frame */
+    .stage-container {
+      width: 92vw;
+      max-width: 960px;
+      height: 85vh;
+      max-height: 580px;
+      background: var(--cream-bg);
+      border-radius: 42px;
+      border: 3px solid #b5261a;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* White flash transition overlay */
+    .fade-overlay {
+      position: absolute;
+      inset: 0;
+      background: #fff;
+      opacity: 0;
+      pointer-events: none !important;
+      transition: opacity 0.22s ease;
+      z-index: 100;
+    }
+    .fade-overlay.active {
+      opacity: 1;
+    }
+
+    /* Screen Views */
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 36px;
+      z-index: 1;
+    }
+    .screen.active {
+      display: flex;
+      z-index: 10;
+      animation: screenIn 0.3s ease-out;
+    }
+
+    @keyframes screenIn {
+      from { opacity: 0; transform: scale(0.98); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* Curved Arched SVG Header - pointer-events: none ensures it NEVER blocks buttons */
+    .curved-header {
+      width: 100%;
+      max-width: 720px;
+      height: 125px;
+      overflow: visible;
+      margin-top: -6px;
+      pointer-events: none !important;
+    }
+    .curved-header text {
+      font-family: 'Fredoka', sans-serif;
+      font-weight: 700;
+      font-size: 36px;
+      fill: var(--red-main);
+      stroke: #6e120b;
+      stroke-width: 1.2px;
+      paint-order: stroke fill;
+      letter-spacing: 1px;
+    }
+
+    /* Character / Sticker Box */
+    .character-box {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: -10px 0 5px;
+      pointer-events: none !important;
+    }
+    .character-box img {
+      max-height: 220px;
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 14px rgba(0,0,0,0.12));
+      animation: floatBounce 2.4s ease-in-out infinite;
+    }
+    .upside-down-spin {
+      animation: tumbleIn 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+    }
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes tumbleIn {
+      0% { transform: rotate(0deg) scale(0.6); }
+      100% { transform: rotate(-165deg) scale(1); }
+    }
+
+    /* Subtitle Question */
+    .question-text {
+      font-size: 35px;
+      font-weight: 700;
+      color: var(--red-main);
+      text-shadow: 0 2px 0 #6e120b;
+      margin-bottom: 12px;
+      text-align: center;
+      pointer-events: none !important;
+    }
+
+    /* 3D Glossy Pill Buttons */
+    .btn-row {
+      display: flex;
+      gap: 32px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 60;
+      pointer-events: auto !important;
+    }
+    .glossy-btn {
+      position: relative;
+      z-index: 60;
+      pointer-events: auto !important;
+      background: linear-gradient(180deg, #ff5146 0%, #d92518 55%, #a5160c 100%);
+      color: #ffffff;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      padding: 10px 44px;
+      border-radius: 999px;
+      border: 3px solid #8c140b;
+      box-shadow: 0 6px 0 #6e0f08, 0 10px 18px rgba(0,0,0,0.22);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      letter-spacing: 1.5px;
+    }
+    .glossy-btn::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 14px;
+      width: 18px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 50%;
+      transform: rotate(-25deg);
+      pointer-events: none;
+    }
+    .glossy-btn::after {
+      content: '';
+      position: absolute;
+      bottom: 7px;
+      right: 14px;
+      width: 14px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+      transform: rotate(-25deg);
+      pointer-events: none;
+    }
+    .glossy-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+    }
+    .glossy-btn:active {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 #6e0f08;
+    }
+
+    /* SCREEN 4: 3 Pink Gift Boxes Hub */
+    .gifts-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 36px;
+      margin: 10px 0;
+      position: relative;
+      z-index: 50;
+      pointer-events: auto !important;
+    }
+    .gift-item {
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.28s ease;
+      filter: drop-shadow(0 12px 16px rgba(180, 40, 70, 0.25));
+      pointer-events: auto !important;
+    }
+    .gift-item img {
+      width: 175px;
+      height: auto;
+      display: block;
+      pointer-events: none;
+    }
+    .gift-item:hover {
+      transform: scale(1.12) rotate(-4deg);
+      filter: drop-shadow(0 18px 22px rgba(180, 40, 70, 0.38));
+    }
+    @keyframes giftPop {
+      0% { opacity: 0; transform: scale(0.2) translateY(30px); }
+      75% { transform: scale(1.1) translateY(-6px); }
+      100% { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .screen.active .gift-item:nth-child(1) {
+      animation: giftPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s backwards;
+    }
+    .screen.active .gift-item:nth-child(2) {
+      animation: giftPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.25s backwards;
+    }
+    .screen.active .gift-item:nth-child(3) {
+      animation: giftPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s backwards;
+    }
+
+    .bottom-left-prompt {
+      align-self: flex-start;
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--red-main);
+      text-shadow: 0 2px 0 #6e120b;
+      margin-left: 25px;
+      letter-spacing: 1px;
+      min-height: 44px;
+      pointer-events: none !important;
+    }
+
+    /* Side Navigation Buttons (Chevron & Click Me Circle) */
+    .next-chevron {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--red-main);
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, color 0.2s;
+      z-index: 70;
+      pointer-events: auto !important;
+    }
+    .next-chevron:hover {
+      transform: translateY(-50%) scale(1.22) translateX(4px);
+      color: #921309;
+    }
+
+    /* Click Me Circle Badge */
+    .click-me-circle {
+      position: absolute;
+      right: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 66px;
+      height: 66px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fff0f2 60%, #ffd6dc 100%);
+      border: 2px solid #e57373;
+      box-shadow: 0 6px 14px rgba(183, 28, 28, 0.25), inset 0 2px 4px rgba(255,255,255,0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #b71c1c;
+      cursor: pointer;
+      z-index: 70;
+      pointer-events: auto !important;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: badgePulse 2s infinite ease-in-out;
+    }
+    .click-me-circle:hover {
+      transform: translateY(-50%) scale(1.15);
+    }
+    @keyframes badgePulse {
+      0%, 100% { box-shadow: 0 6px 14px rgba(183, 28, 28, 0.25); }
+      50% { box-shadow: 0 8px 22px rgba(183, 28, 28, 0.45); }
+    }
+
+    /* Wavy Corner Accent for Card, Wish & Final Screen */
+    .wavy-left-decor {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 155px;
+      pointer-events: none !important;
+      z-index: 1;
+    }
+
+    /* SCREEN 5: Happy Birthday Card Layout */
+    .bday-card-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      z-index: 5;
+      padding: 10px 45px 10px 85px;
+      position: relative;
+    }
+    .bday-title {
+      font-family: 'Playfair Display', serif;
+      color: var(--red-main);
+      line-height: 1.05;
+      margin-bottom: 18px;
+    }
+    .bday-title .happy {
+      font-size: 56px;
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .sparkle-star {
+      color: var(--red-main);
+      font-size: 28px;
+      animation: sparkleTwinkle 1.8s infinite alternate ease-in-out;
+      display: inline-block;
+    }
+    .sparkle-star.small {
+      font-size: 16px;
+      transform: translateY(-10px);
+    }
+    .bottom-star {
+      position: absolute;
+      left: 85px;
+      bottom: 25px;
+      font-size: 26px;
+      pointer-events: none;
+    }
+    @keyframes sparkleTwinkle {
+      0% { transform: scale(0.85) rotate(-5deg); opacity: 0.75; }
+      100% { transform: scale(1.2) rotate(15deg); opacity: 1; }
+    }
+    .bday-title .birthday {
+      font-family: 'Alex Brush', cursive;
+      font-size: 82px;
+      font-weight: 400;
+      display: block;
+      margin-top: -10px;
+      margin-bottom: 8px;
+    }
+    .bday-subtext {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 22px;
+      color: #7f1d1d;
+      max-width: 420px;
+      line-height: 1.35;
+      margin-bottom: 26px;
+    }
+    .ribbon-banner {
+      display: inline-block;
+      background: var(--red-accent);
+      color: #fff;
+      font-size: 26px;
+      font-weight: 700;
+      padding: 8px 54px;
+      clip-path: polygon(8% 0, 92% 0, 100% 50%, 92% 100%, 8% 100%, 0 50%);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    /* Tilted Gingham Photo Frame */
+    .gingham-polaroid {
+      width: 245px;
+      padding: 16px 16px 26px 16px;
+      background-color: #fff;
+      background-image: 
+        linear-gradient(90deg, rgba(201, 42, 29, 0.5) 50%, transparent 50%),
+        linear-gradient(rgba(201, 42, 29, 0.5) 50%, transparent 50%);
+      background-size: 22px 22px;
+      border-radius: 8px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+      transform: rotate(3deg);
+      position: relative;
+      margin: 0 auto;
+    }
+    .gingham-polaroid img#main-featured-photo {
+      width: 100%;
+      height: 195px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #eee;
+      border: 4px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      display: block;
+    }
+    .paperclip-img {
+      position: absolute;
+      top: -14px;
+      right: 14px;
+      width: 24px;
+      height: auto;
+      z-index: 15;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+      pointer-events: none;
+    }
+    .corner-sticker {
+      position: absolute;
+      bottom: 12px;
+      right: 65px;
+      width: 135px;
+      z-index: 20;
+      pointer-events: none !important;
+      filter: drop-shadow(0 6px 12px rgba(0,0,0,0.15));
+    }
+    .cheer-sticker {
+      right: 55px;
+      bottom: 8px;
+      width: 125px;
+    }
+
+    /* SCREEN 6: Make a Wish Cake */
+    .cake-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      flex: 1;
+      margin-top: -15px;
+      pointer-events: none !important;
+    }
+    .love-note-wrap {
+      position: absolute;
+      left: 110px;
+      top: 55px;
+      pointer-events: none;
+    }
+    .love-note-wrap img {
+      width: 115px;
+      height: auto;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+    .cake-display {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .cake-main-img {
+      width: 330px;
+      height: auto;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
+    }
+    .candle-flame-overlay {
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 210px;
+      height: 35px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 10px;
+      pointer-events: none;
+    }
+    .candle-flame-dot {
+      width: 10px;
+      height: 16px;
+      background: radial-gradient(ellipse at center, #fff 0%, #ffeb3b 40%, #ff5722 90%);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 10px 4px rgba(255, 174, 0, 0.8);
+      animation: candleFlicker 0.6s infinite alternate ease-in-out;
+    }
+    .candle-flame-dot:nth-child(even) {
+      animation-duration: 0.5s;
+      animation-delay: 0.15s;
+    }
+    .candle-flame-dot:nth-child(3n) {
+      animation-duration: 0.7s;
+      animation-delay: 0.3s;
+    }
+    @keyframes candleFlicker {
+      0% { transform: scale(0.9) rotate(-4deg); opacity: 0.85; }
+      100% { transform: scale(1.18) rotate(4deg); opacity: 1; }
+    }
+    .balloon-sticker {
+      right: 48px;
+      bottom: 10px;
+      width: 145px;
+    }
+
+    /* SCREEN 7: Memories Wall */
+    .memories-header-img {
+      width: 440px;
+      height: auto;
+      margin-top: 4px;
+      z-index: 10;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+    .heart-lace-sticker {
+      position: absolute;
+      top: 18px;
+      left: 22px;
+      width: 60px;
+      height: auto;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
+      z-index: 15;
+    }
+    .polaroid-wall-wrapper {
+      position: relative;
+      width: 100%;
+      padding: 24px 10px 10px 10px;
+      z-index: 5;
+    }
+    .clothesline-string {
+      position: absolute;
+      top: 26px;
+      left: -20px;
+      right: -20px;
+      height: 2px;
+      background: #5c4033;
+      z-index: 1;
+    }
+    .fairy-bulb {
+      position: absolute;
+      top: 24px;
+      width: 12px;
+      height: 16px;
+      border-radius: 50% 50% 45% 45%;
+      background: radial-gradient(circle at 40% 40%, #ffffff 0%, #fff176 50%, #fbc02d 100%);
+      box-shadow: 0 0 12px 4px rgba(255, 235, 59, 0.75);
+      z-index: 2;
+      animation: bulbGlow 2s infinite alternate ease-in-out;
+    }
+    @keyframes bulbGlow {
+      0% { opacity: 0.75; transform: scale(0.92); }
+      100% { opacity: 1; transform: scale(1.08); }
+    }
+    .polaroid-wall {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+      width: 100%;
+      position: relative;
+      z-index: 5;
+    }
+    .mini-polaroid {
+      background-color: #fff;
+      padding: 8px 8px 24px 8px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      position: relative;
+      transition: transform 0.25s;
+    }
+    .mini-polaroid.gingham-border {
+      background-image: 
+        linear-gradient(90deg, rgba(201, 42, 29, 0.5) 50%, transparent 50%),
+        linear-gradient(rgba(201, 42, 29, 0.5) 50%, transparent 50%);
+      background-size: 16px 16px;
+    }
+    .mini-polaroid.white-border {
+      background: #ffffff;
+      border: 1px solid #e0e0e0;
+    }
+    .mini-polaroid:nth-child(odd) { transform: rotate(-3deg); }
+    .mini-polaroid:nth-child(even) { transform: rotate(3.5deg) translateY(8px); }
+    .mini-polaroid:hover { transform: scale(1.08) rotate(0deg); z-index: 25; }
+    
+    /* Clothespin Clip */
+    .mini-polaroid::before {
+      content: '';
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 9px;
+      height: 22px;
+      background: #d7a977;
+      border: 1px solid #9c6f44;
+      border-radius: 2px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+      z-index: 10;
+    }
+    .mini-polaroid img {
+      width: 100%;
+      height: 155px;
+      object-fit: cover;
+      display: block;
+      background: #fff;
+    }
+    .bow-sticker {
+      position: absolute;
+      top: -10px;
+      width: 32px;
+      height: auto;
+      z-index: 20;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
+    }
+    .bow-sticker.left { left: -8px; }
+    .bow-sticker.right { right: -8px; }
+    .poinsettia-sticker {
+      position: absolute;
+      bottom: -10px;
+      left: 36%;
+      width: 58px;
+      height: auto;
+      z-index: 20;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    }
+    .camera-sticker {
+      position: absolute;
+      bottom: 12px;
+      left: 20px;
+      width: 82px;
+      height: auto;
+      z-index: 20;
+      pointer-events: none;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
+    }
+
+    /* SCREEN 8: Scrollable Lined Notebook Letter */
+    .notebook-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+    .notebook-rings {
+      position: absolute;
+      top: 0;
+      left: 45px;
+      right: 140px;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 30;
+    }
+    .spiral-ring {
+      width: 12px;
+      height: 26px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, #e6e6e6 0%, #8c8c8c 45%, #ffffff 65%, #555555 100%);
+      box-shadow: 0 3px 5px rgba(0,0,0,0.28), inset 0 1px 2px rgba(255,255,255,0.9);
+      border: 1px solid #777;
+    }
+    .notebook-scroll {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      padding: 26px 140px 45px 50px;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 34px,
+        #e5d5c5 34px,
+        #e5d5c5 36px
+      );
+      position: relative;
+    }
+    .notebook-tear-edge {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 105px;
+      pointer-events: none;
+      z-index: 10;
+      background-image: 
+        linear-gradient(90deg, rgba(201, 42, 29, 0.55) 50%, transparent 50%),
+        linear-gradient(rgba(201, 42, 29, 0.55) 50%, transparent 50%);
+      background-size: 26px 26px;
+      background-color: #fff;
+      border-left: 2px dashed #bba998;
+    }
+    .script-heading {
+      font-family: 'Alex Brush', cursive;
+      font-size: 68px;
+      color: var(--red-main);
+      text-align: center;
+      margin-bottom: 12px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .heart-glossy-img {
+      width: 32px;
+      height: auto;
+      filter: drop-shadow(0 3px 6px rgba(180, 20, 20, 0.3));
+    }
+    .letter-body {
+      font-family: 'Patrick Hand', cursive;
+      font-size: 23px;
+      line-height: 36px;
+      color: #4a2511;
+      white-space: pre-line;
+    }
+    .letter-highlight {
+      font-family: 'Playfair Display', serif;
+      color: var(--red-main);
+      font-weight: bold;
+      font-size: 26px;
+    }
+    .onesie-sticker {
+      right: 28px;
+      bottom: 45px;
+      width: 120px;
+    }
+
+    /* SCREEN 9: Final Wish Message */
+    .final-wish-wrapper {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 70px 0 100px;
+      z-index: 5;
+    }
+    .final-wish-text {
+      font-size: 46px;
+      font-weight: 700;
+      color: var(--red-main);
+      text-align: center;
+      max-width: 730px;
+      line-height: 1.3;
+      text-shadow: 0 2px 0 rgba(110, 18, 11, 0.2);
+    }
+    .envelope-inline-img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 52px;
+      height: auto;
+      margin-left: 10px;
+      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.18));
+      animation: floatBounce 2s infinite ease-in-out;
+    }
+    .final-sticker {
+      right: 32px;
+      bottom: 18px;
+      width: 130px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stage-container">
+    <div id="fadeOverlay" class="fade-overlay"></div>
+
+    <!-- ================= SCREEN 1: INTRO ================= -->
+    <section id="screen-intro" class="screen active">
+      <svg class="curved-header" viewBox="0 0 700 135">
+        <path id="curve1" d="M 40,120 Q 350,15 660,120" fill="transparent" />
+        <text width="700">
+          <textPath href="#curve1" xlink:href="#curve1" startOffset="50%" text-anchor="middle" id="tw-intro">
+            I have made something for you
+          </textPath>
+        </text>
+      </svg>
+
+      <div class="character-box">
+        <img id="img-shinchan-dance" src="assets/shinchan-dance.gif" alt="Shinchan Dancing" />
+      </div>
+
+      <div class="question-text">Do you wanna see it?</div>
+
+      <div class="btn-row">
+        <button type="button" class="glossy-btn" data-target="screen-excited">YES</button>
+        <button type="button" class="glossy-btn" data-target="screen-no">NO</button>
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 2: HOW DARE YOU (NO) ================= -->
+    <section id="screen-no" class="screen">
+      <svg class="curved-header" viewBox="0 0 700 135">
+        <path id="curve2" d="M 80,120 Q 350,25 620,120" fill="transparent" />
+        <text width="700">
+          <textPath href="#curve2" xlink:href="#curve2" startOffset="50%" text-anchor="middle" id="tw-no">
+            HOW DARE YOU!?
+          </textPath>
+        </text>
+      </svg>
+
+      <div class="character-box">
+        <img id="img-shinchan-upset" class="upside-down-spin" src="assets/shinchan-upset.gif" alt="Shinchan Upset" />
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="glossy-btn" data-target="screen-intro">TRY AGAIN</button>
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 3: ARE YOU REALLY EXCITED ================= -->
+    <section id="screen-excited" class="screen">
+      <svg class="curved-header" viewBox="0 0 700 135">
+        <path id="curve3" d="M 60,120 Q 350,25 640,120" fill="transparent" />
+        <text width="700">
+          <textPath href="#curve3" xlink:href="#curve3" startOffset="50%" text-anchor="middle" id="tw-excited">
+            Are you really excited?
+          </textPath>
+        </text>
+      </svg>
+
+      <div class="character-box">
+        <img id="img-shinchan-shy" src="assets/shinchan-shy.gif" alt="Shinchan Shy" />
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="glossy-btn" data-target="screen-gifts">YES</button>
+        <button type="button" class="glossy-btn" data-target="screen-gifts">YES</button>
+      </div>
+    </section>
+
+    <!-- ================= SCREEN 4: 3 GIFTS HUB ================= -->
+    <section id="screen-gifts" class="screen">
+      <svg class="curved-header" viewBox="0 0 750 135">
+        <path id="curve4" d="M 35,120 Q 375,18 715,120" fill="transparent" />
+        <text width="750">
+          <textPath href="#curve4" xlink:href="#curve4" startOffset="50%" text-anchor="middle">
+            Each gift has something for you..
+          </textPath>
+        </text>
+      </svg>
+
+      <div class="gifts-row">
+        <!-- Gift 1: Birthday Card & Cake -->
+        <div class="gift-item" data-target="screen-card" title="Open Gift 1">
+          <img src="assets/gift-box.png" alt="Gift 1" />
+        </div>
+        <!-- Gift 2: Memories Polaroid Wall -->
+        <div class="gift-item" data-target="screen-memories" title="Open Gift 2">
+          <img src="assets/gift-box.png" alt="Gift 2" />
+        </div>
+        <!-- Gift 3: Long Bestie Letter -->
+        <div class="gift-item" data-target="screen-letter" title="Open Gift 3">
+          <img src="assets/gift-box.png" alt="Gift 3" />
+        </div>
+      </div>
+
+      <div class="bottom-left-prompt" id="click-gift-text">CLICK ON THE GIFT</div>
+
+      <button type="button" class="next-chevron" data-target="screen-final" title="Final Wish">&#10095;</button>
+    </section>
+
+    <!-- ================= SCREEN 5: HAPPY BIRTHDAY CARD ================= -->
+    <section id="screen-card" class="screen">
+      <!-- Wavy Terracotta + Gingham Corner Left Accent -->
+      <svg class="wavy-left-decor" viewBox="0 0 150 600" preserveAspectRatio="none">
+        <defs>
+          <pattern id="ginghamDecor5" width="22" height="22" patternUnits="userSpaceOnUse">
+            <rect width="22" height="22" fill="#ffffff" />
+            <rect x="0" y="0" width="11" height="22" fill="rgba(201,42,29,0.5)" />
+            <rect x="0" y="0" width="22" height="11" fill="rgba(201,42,29,0.5)" />
+          </pattern>
+        </defs>
+        <!-- Bottom left gingham wave patch -->
+        <path d="M0,430 Q50,460 60,520 T25,600 L0,600 Z" fill="url(#ginghamDecor5)" />
+        <!-- Terracotta wave -->
+        <path d="M0,0 L115,0 C65,150 145,290 80,440 C45,510 95,570 50,600 L0,600 Z" fill="#d84b35"/>
+        <!-- Offset Cream Wavy Outline -->
+        <path d="M125,0 C75,150 155,290 90,440 C55,510 105,570 60,600" fill="none" stroke="#faf8f5" stroke-width="2.5" />
+      </svg>
+
+      <span class="sparkle-star bottom-star">✦</span>
+
+      <div class="bday-card-grid">
+        <div>
+          <div class="bday-title">
+            <span class="happy">HAPPY <span class="sparkle-star">✦</span><span class="sparkle-star small">✦</span></span>
+            <span class="birthday">Birthday</span>
+          </div>
+          <p class="bday-subtext" id="card-wish-copy"></p>
+          <div class="ribbon-banner" id="recipient-name">Chikuuu</div>
+        </div>
+
+        <div style="position: relative;">
+          <div class="gingham-polaroid">
+            <img id="main-featured-photo" alt="Birthday Star" />
+            <img src="assets/paperclip.png" class="paperclip-img" alt="Paperclip" />
+          </div>
+        </div>
+      </div>
+
+      <img id="img-shinchan-cheer" class="corner-sticker cheer-sticker" src="assets/shinchan-cheer.gif" alt="Shinchan" />
+
+      <button type="button" class="click-me-circle" data-target="screen-wish">
+        <span>CLICK ME</span>
+        <span style="font-size:14px;">❤️</span>
+      </button>
+    </section>
+
+    <!-- ================= SCREEN 6: MAKE A WISH CAKE ================= -->
+    <section id="screen-wish" class="screen">
+      <!-- Wavy Terracotta Left Accent -->
+      <svg class="wavy-left-decor" viewBox="0 0 150 600" preserveAspectRatio="none">
+        <defs>
+          <pattern id="ginghamDecor6" width="22" height="22" patternUnits="userSpaceOnUse">
+            <rect width="22" height="22" fill="#ffffff" />
+            <rect x="0" y="0" width="11" height="22" fill="rgba(201,42,29,0.5)" />
+            <rect x="0" y="0" width="22" height="11" fill="rgba(201,42,29,0.5)" />
+          </pattern>
+        </defs>
+        <path d="M0,430 Q50,460 60,520 T25,600 L0,600 Z" fill="url(#ginghamDecor6)" />
+        <path d="M0,0 L115,0 C65,150 145,290 80,440 C45,510 95,570 50,600 L0,600 Z" fill="#d84b35"/>
+        <path d="M125,0 C75,150 155,290 90,440 C55,510 105,570 60,600" fill="none" stroke="#faf8f5" stroke-width="2.5" />
+      </svg>
+
+      <svg class="curved-header" viewBox="0 0 700 135">
+        <path id="curveWish" d="M 90,115 Q 350,25 610,115" fill="transparent" />
+        <text width="700">
+          <textPath href="#curveWish" xlink:href="#curveWish" startOffset="50%" text-anchor="middle" id="tw-wish">
+            MAKE A WISH
+          </textPath>
+        </text>
+      </svg>
+
+      <div class="cake-container">
+        <!-- i love you note -->
+        <div class="love-note-wrap">
+          <img src="assets/love-note.png" alt="i love you" />
+        </div>
+
+        <!-- 2-Tier Birthday Cake with 7 candles -->
+        <div class="cake-display">
+          <img src="assets/birthday-cake.gif" alt="Birthday Cake" class="cake-main-img" />
+          <div class="candle-flame-overlay">
+            <span class="candle-flame-dot"></span>
+            <span class="candle-flame-dot"></span>
+            <span class="candle-flame-dot"></span>
+            <span class="candle-flame-dot"></span>
+            <span class="candle-flame-dot"></span>
+            <span class="candle-flame-dot"></span>
+            <span class="candle-flame-dot"></span>
+          </div>
+        </div>
+      </div>
+
+      <img id="img-shinchan-balloon" class="corner-sticker balloon-sticker" src="assets/shinchan-balloon.gif" alt="Shinchan Balloons" />
+
+      <button type="button" class="click-me-circle" data-target="screen-gifts">
+        <span>CLICK ME</span>
+        <span style="font-size:14px;">❤️</span>
+      </button>
+    </section>
+
+    <!-- ================= SCREEN 7: MEMORIES POLAROID WALL ================= -->
+    <section id="screen-memories" class="screen">
+      <!-- Cutout Scrapbook Header Banner -->
+      <img src="assets/memories-header.png" alt="Memories" class="memories-header-img" />
+
+      <!-- Top-left lacy gingham heart sticker -->
+      <img src="assets/heart-lace.png" class="heart-lace-sticker" alt="Lace Heart" />
+
+      <div class="polaroid-wall-wrapper">
+        <div class="clothesline-string"></div>
+        <!-- Fairy light bulbs -->
+        <div class="fairy-bulb" style="left: 8%;"></div>
+        <div class="fairy-bulb" style="left: 27%;"></div>
+        <div class="fairy-bulb" style="left: 47%;"></div>
+        <div class="fairy-bulb" style="left: 67%;"></div>
+        <div class="fairy-bulb" style="left: 87%;"></div>
+
+        <!-- 5 Polaroids Wall -->
+        <div class="polaroid-wall" id="memories-grid"></div>
+
+        <!-- Flower sticker between polaroids 2 and 3 -->
+        <img src="assets/poinsettia.png" class="poinsettia-sticker" alt="Flower" />
+      </div>
+
+      <!-- Vintage Retro Camera in bottom-left -->
+      <img src="assets/vintage-camera.png" class="camera-sticker" alt="Vintage Camera" />
+
+      <button type="button" class="next-chevron" data-target="screen-gifts" title="Back to Gifts">&#10095;</button>
+    </section>
+
+    <!-- ================= SCREEN 8: DEAR BESTIE LETTER ================= -->
+    <section id="screen-letter" class="screen" style="padding:0;">
+      <div class="notebook-container">
+        <!-- Top Spiral Wire Rings -->
+        <div class="notebook-rings">
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+          <span class="spiral-ring"></span>
+        </div>
+
+        <div class="notebook-scroll">
+          <div class="script-heading">
+            My fav person
+            <img src="assets/heart-glossy.png" class="heart-glossy-img" alt="Heart" />
+          </div>
+          <div class="letter-body">
+            <div class="letter-highlight">Dear bestie,</div>
+            <div id="letter-typewriter"></div>
+            <div class="letter-highlight" style="margin-top:14px; font-family:'Patrick Hand',cursive; font-size:27px;">Love you ❤️</div>
+          </div>
+        </div>
+
+        <!-- Right Perforated Torn Notebook Edge revealing Gingham background -->
+        <div class="notebook-tear-edge"></div>
+      </div>
+
+      <img id="img-shinchan-onesie" class="corner-sticker onesie-sticker" src="assets/shinchan-onesie.gif" alt="Shinchan" />
+      <button type="button" class="next-chevron" style="bottom: 22px; top: auto;" data-target="screen-gifts">&#10095;</button>
+    </section>
+
+    <!-- ================= SCREEN 9: FINAL WISH ================= -->
+    <section id="screen-final" class="screen">
+      <!-- Wavy Terracotta + Gingham Left Accent -->
+      <svg class="wavy-left-decor" viewBox="0 0 150 600" preserveAspectRatio="none">
+        <defs>
+          <pattern id="ginghamDecor9" width="22" height="22" patternUnits="userSpaceOnUse">
+            <rect width="22" height="22" fill="#ffffff" />
+            <rect x="0" y="0" width="11" height="22" fill="rgba(201,42,29,0.5)" />
+            <rect x="0" y="0" width="22" height="11" fill="rgba(201,42,29,0.5)" />
+          </pattern>
+        </defs>
+        <path d="M0,430 Q50,460 60,520 T25,600 L0,600 Z" fill="url(#ginghamDecor9)" />
+        <path d="M0,0 L115,0 C65,150 145,290 80,440 C45,510 95,570 50,600 L0,600 Z" fill="#d84b35"/>
+        <path d="M125,0 C75,150 155,290 90,440 C55,510 105,570 60,600" fill="none" stroke="#faf8f5" stroke-width="2.5" />
+      </svg>
+
+      <div class="final-wish-wrapper">
+        <div class="final-wish-text" id="final-wish-copy"></div>
+      </div>
+
+      <img id="img-shinchan-final" class="corner-sticker final-sticker" src="assets/shinchan-final.gif" alt="Shinchan" />
+    </section>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      /* =====================================================================
+         🔧 CONFIGURATION: LOCAL ASSETS, TEXT & PHOTOS
+         ===================================================================== */
+      const CONFIG = {
+        recipientName: "Chikuuu",
+        cardShortWish: "Happy birthday! Wishing you a little bit of happiness, love, laughter, and joy today always.",
+        finalScreenWish: "May all the good things you've been waiting for finally find you this year",
+        
+        featuredPhoto: "assets/featured-photo.jpg",
+        memoryPhotos: [
+          "assets/memory-1.jpg",
+          "assets/memory-2.jpg",
+          "assets/memory-3.jpg",
+          "assets/memory-4.jpg",
+          "assets/memory-5.jpg"
+        ],
+
+        stickers: {
+          dance: "assets/shinchan-dance.gif",
+          upset: "assets/shinchan-upset.gif",
+          shy: "assets/shinchan-shy.gif",
+          cheer: "assets/shinchan-cheer.gif",
+          balloon: "assets/shinchan-balloon.gif",
+          onesie: "assets/shinchan-onesie.gif",
+          final: "assets/shinchan-final.gif"
+        },
+
+        letterText: `Happy Birthday, Bestie! ❤️
+I honestly don't know how to put into words how grateful I am to have you in my life. Thank you for being my biggest supporter, my partner in crime, and the person I can always count on. Through all the laughs, random conversations, inside jokes, and even the tough days, you've made life so much better just by being a part of it.
+
+I hope this year brings you everything you've been wishing for—happiness, success, peace, good health, and countless reasons to smile. Never forget how amazing, kind, and loved you are. You deserve nothing but the very best.
+
+No matter where life takes us, I hope we always stay this close and keep making memories together. Thank you for being the wonderful person you are and for making my life brighter every single day. Have the happiest birthday, and enjoy every moment of your special day. I love you so much! ❤️🎂`
+      };
+
+      /* Populate basic elements */
+      document.getElementById('recipient-name').textContent = CONFIG.recipientName;
+      document.getElementById('card-wish-copy').textContent = CONFIG.cardShortWish;
+      document.getElementById('main-featured-photo').src = CONFIG.featuredPhoto;
+
+      document.getElementById('img-shinchan-dance').src = CONFIG.stickers.dance;
+      document.getElementById('img-shinchan-upset').src = CONFIG.stickers.upset;
+      document.getElementById('img-shinchan-shy').src = CONFIG.stickers.shy;
+      document.getElementById('img-shinchan-cheer').src = CONFIG.stickers.cheer;
+      document.getElementById('img-shinchan-balloon').src = CONFIG.stickers.balloon;
+      document.getElementById('img-shinchan-onesie').src = CONFIG.stickers.onesie;
+      document.getElementById('img-shinchan-final').src = CONFIG.stickers.final;
+
+      /* Populate 5 memories polaroids with decorative ribbon bows */
+      const memoriesGrid = document.getElementById('memories-grid');
+      memoriesGrid.innerHTML = '';
+      CONFIG.memoryPhotos.forEach((url, idx) => {
+        const div = document.createElement('div');
+        // Frame 2 has a crisp white border, others have gingham
+        div.className = (idx === 1) ? 'mini-polaroid white-border' : 'mini-polaroid gingham-border';
+        
+        let bowHTML = '';
+        if (idx === 0) {
+          bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker left" alt="Bow" />';
+        } else if (idx === 2) {
+          bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker left" alt="Bow" />';
+        } else if (idx === 3) {
+          bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker right" alt="Bow" />';
+        }
+
+        div.innerHTML = `${bowHTML}<img src="${url}" alt="Memory ${idx + 1}" />`;
+        memoriesGrid.appendChild(div);
+      });
+
+      /* =====================================================================
+         🎬 SCREEN NAVIGATION & TYPEWRITER ANIMATION ENGINE
+         ===================================================================== */
+      let activeTimers = [];
+
+      function clearTypewriters() {
+        activeTimers.forEach(t => clearInterval(t));
+        activeTimers = [];
+      }
+
+      function typeWriterElement(el, text, speed = 42, onComplete = null) {
+        if (!el) return;
+        el.textContent = '';
+        let i = 0;
+        const timer = setInterval(() => {
+          el.textContent += text.charAt(i);
+          i++;
+          if (i >= text.length) {
+            clearInterval(timer);
+            if (onComplete) onComplete();
+          }
+        }, speed);
+        activeTimers.push(timer);
+      }
+
+      function navigateTo(screenId) {
+        clearTypewriters();
+        const overlay = document.getElementById('fadeOverlay');
+        overlay.classList.add('active');
+
+        setTimeout(() => {
+          document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+          const target = document.getElementById(screenId);
+          if (target) {
+            target.classList.add('active');
+          }
+          overlay.classList.remove('active');
+
+          // Trigger screen-specific typewriter animations from the video
+          if (screenId === 'screen-no') {
+            typeWriterElement(document.getElementById('tw-no'), 'HOW DARE YOU!?', 50);
+          } else if (screenId === 'screen-excited') {
+            typeWriterElement(document.getElementById('tw-excited'), 'Are you really excited?', 40);
+          } else if (screenId === 'screen-gifts') {
+            typeWriterElement(document.getElementById('click-gift-text'), 'CLICK ON THE GIFT', 50);
+          } else if (screenId === 'screen-wish') {
+            typeWriterElement(document.getElementById('tw-wish'), 'MAKE A WISH', 55);
+          } else if (screenId === 'screen-letter') {
+            typeWriterElement(document.getElementById('letter-typewriter'), CONFIG.letterText, 16);
+          } else if (screenId === 'screen-final') {
+            const finalEl = document.getElementById('final-wish-copy');
+            finalEl.innerHTML = '';
+            typeWriterElement(finalEl, CONFIG.finalScreenWish, 38, () => {
+              finalEl.innerHTML += '<img src="assets/envelope-heart.png" class="envelope-inline-img" alt="💌" />';
+            });
+          }
+        }, 220);
+      }
+
+      // Expose globally AND attach click listeners
+      window.navigateTo = navigateTo;
+
+      document.querySelectorAll('[data-target]').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetScreen = btn.getAttribute('data-target');
+          if (targetScreen) navigateTo(targetScreen);
+        });
+      });
+    });
+  </script>
+</body>
+</html>
