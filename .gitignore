@@ -1,2 +1,5 @@
 *.mp4
 *.log
+verification_shots/
+temp_test/
+test_*.py

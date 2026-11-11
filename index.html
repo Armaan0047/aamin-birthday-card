@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Birthday Gift For You ❤️</title>
+  <!-- Early Detection: Instantly hide template/builder controls if opened as a shared card -->
+  <script>
+    (function() {
+      try {
+        var s = window.location.search || '';
+        var h = window.location.hash || '';
+        if (s.indexOf('card=') !== -1 || s.indexOf('c=') !== -1 || h.indexOf('card=') !== -1 || h.indexOf('c=') !== -1 || h.indexOf('data=') !== -1) {
+          document.documentElement.classList.add('is-custom-card');
+        }
+      } catch(e) {}
+    })();
+  </script>
   <!-- Google Fonts matching the Canva template -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -251,12 +263,13 @@
     }
 
     .bottom-left-prompt {
-      align-self: flex-start;
+      align-self: center;
+      text-align: center;
       font-size: 36px;
       font-weight: 700;
       color: var(--red-main);
       text-shadow: 0 2px 0 #6e120b;
-      margin-left: 25px;
+      margin: 0 auto;
       letter-spacing: 1px;
       min-height: 44px;
       pointer-events: none !important;
@@ -460,16 +473,26 @@
       margin-top: -15px;
       pointer-events: none !important;
     }
-    .love-note-wrap {
+    .wish-bday-note {
       position: absolute;
-      left: 110px;
-      top: 55px;
+      left: 95px;
+      top: 60px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Alex Brush', cursive;
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--red-main);
+      transform: rotate(-8deg);
+      text-shadow: 0 2px 4px rgba(180, 20, 20, 0.15);
       pointer-events: none;
+      z-index: 10;
     }
-    .love-note-wrap img {
-      width: 115px;
-      height: auto;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    .wish-bday-sparkle {
+      font-size: 24px;
+      color: #ff9800;
+      animation: sparkleTwinkle 1.5s infinite alternate ease-in-out;
     }
     .cake-display {
       position: relative;
@@ -478,41 +501,9 @@
       align-items: center;
     }
     .cake-main-img {
-      width: 330px;
+      width: 310px;
       height: auto;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.15));
-    }
-    .candle-flame-overlay {
-      position: absolute;
-      top: 6px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 210px;
-      height: 35px;
-      display: flex;
-      justify-content: space-between;
-      padding: 0 10px;
-      pointer-events: none;
-    }
-    .candle-flame-dot {
-      width: 10px;
-      height: 16px;
-      background: radial-gradient(ellipse at center, #fff 0%, #ffeb3b 40%, #ff5722 90%);
-      border-radius: 50% 50% 35% 35%;
-      box-shadow: 0 0 10px 4px rgba(255, 174, 0, 0.8);
-      animation: candleFlicker 0.6s infinite alternate ease-in-out;
-    }
-    .candle-flame-dot:nth-child(even) {
-      animation-duration: 0.5s;
-      animation-delay: 0.15s;
-    }
-    .candle-flame-dot:nth-child(3n) {
-      animation-duration: 0.7s;
-      animation-delay: 0.3s;
-    }
-    @keyframes candleFlicker {
-      0% { transform: scale(0.9) rotate(-4deg); opacity: 0.85; }
-      100% { transform: scale(1.18) rotate(4deg); opacity: 1; }
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.12));
     }
     .balloon-sticker {
       right: 48px;
@@ -521,19 +512,83 @@
     }
 
     /* SCREEN 7: Memories Wall */
-    .memories-header-img {
-      width: 440px;
-      height: auto;
-      margin-top: 4px;
+    .scrapbook-banner-container {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 14px;
+      margin-bottom: 2px;
       z-index: 10;
       pointer-events: none;
-      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.15));
     }
+    .banner-string-line {
+      position: absolute;
+      top: 24px;
+      left: 22%;
+      right: 22%;
+      height: 2px;
+      background: #5c4033;
+      z-index: 1;
+    }
+    .banner-letters-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      position: relative;
+      z-index: 3;
+    }
+    .letter-card {
+      position: relative;
+      width: 36px;
+      height: 48px;
+      background: #fffefb;
+      border: 1.5px solid #d4c5b9;
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(var(--rot, 0deg));
+    }
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 14px;
+      background: #d4a373;
+      border-radius: 2px;
+      border: 1px solid #8d623a;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+      z-index: 4;
+    }
+    .letter-card span {
+      font-family: 'Fredoka', 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 800;
+      color: #c92a1d;
+      text-transform: uppercase;
+      line-height: 1;
+    }
+    .banner-sparkle {
+      color: #c92a1d;
+      font-size: 20px;
+      position: absolute;
+      top: 14px;
+      z-index: 5;
+    }
+    .banner-sparkle.left { left: 19%; }
+    .banner-sparkle.right { right: 19%; }
+
     .heart-lace-sticker {
       position: absolute;
-      top: 18px;
-      left: 22px;
-      width: 60px;
+      top: 16px;
+      left: 20px;
+      width: 58px;
       height: auto;
       pointer-events: none;
       filter: drop-shadow(0 4px 6px rgba(0,0,0,0.15));
@@ -542,12 +597,12 @@
     .polaroid-wall-wrapper {
       position: relative;
       width: 100%;
-      padding: 24px 10px 10px 10px;
+      padding: 18px 12px 10px 12px;
       z-index: 5;
     }
     .clothesline-string {
       position: absolute;
-      top: 26px;
+      top: 22px;
       left: -20px;
       right: -20px;
       height: 2px;
@@ -556,12 +611,12 @@
     }
     .fairy-bulb {
       position: absolute;
-      top: 24px;
-      width: 12px;
-      height: 16px;
+      top: 20px;
+      width: 10px;
+      height: 14px;
       border-radius: 50% 50% 45% 45%;
       background: radial-gradient(circle at 40% 40%, #ffffff 0%, #fff176 50%, #fbc02d 100%);
-      box-shadow: 0 0 12px 4px rgba(255, 235, 59, 0.75);
+      box-shadow: 0 0 10px 3px rgba(255, 235, 59, 0.75);
       z-index: 2;
       animation: bulbGlow 2s infinite alternate ease-in-out;
     }
@@ -572,70 +627,72 @@
     .polaroid-wall {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 14px;
+      gap: 12px;
       width: 100%;
       position: relative;
       z-index: 5;
     }
     .mini-polaroid {
       background-color: #fff;
-      padding: 8px 8px 24px 8px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.2);
+      padding: 6px 6px 18px 6px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.18);
       position: relative;
-      transition: transform 0.25s;
+      border-radius: 3px;
+      transition: transform 0.25s ease;
     }
     .mini-polaroid.gingham-border {
       background-image: 
         linear-gradient(90deg, rgba(201, 42, 29, 0.5) 50%, transparent 50%),
         linear-gradient(rgba(201, 42, 29, 0.5) 50%, transparent 50%);
-      background-size: 16px 16px;
+      background-size: 14px 14px;
     }
     .mini-polaroid.white-border {
       background: #ffffff;
       border: 1px solid #e0e0e0;
     }
-    .mini-polaroid:nth-child(odd) { transform: rotate(-3deg); }
-    .mini-polaroid:nth-child(even) { transform: rotate(3.5deg) translateY(8px); }
+    .mini-polaroid:nth-child(odd) { transform: rotate(-2.5deg); }
+    .mini-polaroid:nth-child(even) { transform: rotate(3deg) translateY(6px); }
     .mini-polaroid:hover { transform: scale(1.08) rotate(0deg); z-index: 25; }
     
     /* Clothespin Clip */
     .mini-polaroid::before {
       content: '';
       position: absolute;
-      top: -14px;
+      top: -11px;
       left: 50%;
       transform: translateX(-50%);
-      width: 9px;
-      height: 22px;
+      width: 8px;
+      height: 18px;
       background: #d7a977;
       border: 1px solid #9c6f44;
       border-radius: 2px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.25);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.22);
       z-index: 10;
     }
-    .mini-polaroid img {
+    .mini-polaroid img.memory-photo-img {
       width: 100%;
-      height: 155px;
+      height: 120px;
       object-fit: cover;
       display: block;
       background: #fff;
+      border-radius: 2px;
     }
     .bow-sticker {
       position: absolute;
-      top: -10px;
-      width: 32px;
+      top: -8px;
+      width: 24px;
       height: auto;
-      z-index: 20;
+      z-index: 25;
       pointer-events: none;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.25));
     }
-    .bow-sticker.left { left: -8px; }
-    .bow-sticker.right { right: -8px; }
+    .bow-sticker.left { left: -6px; }
+    .bow-sticker.right { right: -6px; }
     .poinsettia-sticker {
       position: absolute;
-      bottom: -10px;
+      bottom: -8px;
       left: 36%;
-      width: 58px;
+      width: 48px;
       height: auto;
       z-index: 20;
       pointer-events: none;
@@ -644,8 +701,8 @@
     .camera-sticker {
       position: absolute;
       bottom: 12px;
-      left: 20px;
-      width: 82px;
+      left: 18px;
+      width: 74px;
       height: auto;
       z-index: 20;
       pointer-events: none;
@@ -718,10 +775,10 @@
       justify-content: center;
       gap: 12px;
     }
-    .heart-glossy-img {
-      width: 32px;
-      height: auto;
-      filter: drop-shadow(0 3px 6px rgba(180, 20, 20, 0.3));
+    .heart-glossy-svg {
+      display: inline-block;
+      vertical-align: middle;
+      transform: translateY(-2px);
     }
     .letter-body {
       font-family: 'Patrick Hand', cursive;
@@ -774,9 +831,115 @@
       bottom: 18px;
       width: 130px;
     }
+
+    /* Floating Template Pill Button */
+    .template-launcher-pill {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+      z-index: 999;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.94);
+      color: #b71c1c;
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.9);
+      border: 1.5px solid rgba(229, 115, 115, 0.6);
+      transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+    .template-launcher-pill:hover {
+      transform: translateY(-2px) scale(1.06);
+      background: #ffffff;
+      color: #8e1010;
+      box-shadow: 0 8px 22px rgba(183, 28, 28, 0.28);
+    }
+
+    /* Template Footer Note on Screen 9 */
+    .template-footer-note {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Fredoka', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: #921309;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 6px 16px;
+      border-radius: 999px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      z-index: 10;
+    }
+    .template-footer-note a {
+      color: #b71c1c;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .template-footer-note a:hover {
+      color: #6e0c05;
+      text-decoration: underline;
+    }
+
+    /* In custom / shared / generated cards: completely hide builder options */
+    .is-custom-card .template-launcher-pill,
+    .is-custom-card .template-footer-note {
+      display: none !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    /* Loading Screen for Shared Custom Cards */
+    #card-loading-screen {
+      position: fixed;
+      inset: 0;
+      background: rgba(255, 248, 246, 0.96);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease;
+    }
+    .card-loader-box {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .card-loader-box img {
+      width: 140px;
+      height: auto;
+      animation: floatBounce 2s infinite ease-in-out;
+    }
+    .card-loader-text {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #b71c1c;
+      margin-top: 14px;
+      letter-spacing: 0.5px;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Floating Template Maker Button -->
+  <a href="customize.html" class="template-launcher-pill" title="Customize this birthday card for someone else!">
+    <span>🎨</span> Make a Card for Bestie
+  </a>
 
   <div class="stage-container">
     <div id="fadeOverlay" class="fade-overlay"></div>
@@ -949,23 +1112,15 @@
       </svg>
 
       <div class="cake-container">
-        <!-- i love you note -->
-        <div class="love-note-wrap">
-          <img src="assets/love-note.png" alt="i love you" />
+        <!-- Cute Happy Birthday script note on the left -->
+        <div class="wish-bday-note">
+          <span class="wish-bday-text">Happy Birthday</span>
+          <span class="wish-bday-sparkle">✦</span>
         </div>
 
-        <!-- 2-Tier Birthday Cake with 7 candles -->
+        <!-- Matching Birthday Cake with 7 flickering candles -->
         <div class="cake-display">
-          <img src="assets/birthday-cake.png" alt="Birthday Cake" class="cake-main-img" />
-          <div class="candle-flame-overlay">
-            <span class="candle-flame-dot"></span>
-            <span class="candle-flame-dot"></span>
-            <span class="candle-flame-dot"></span>
-            <span class="candle-flame-dot"></span>
-            <span class="candle-flame-dot"></span>
-            <span class="candle-flame-dot"></span>
-            <span class="candle-flame-dot"></span>
-          </div>
+          <img src="assets/birthday-cake.gif" alt="Birthday Cake" class="cake-main-img" />
         </div>
       </div>
 
@@ -979,8 +1134,22 @@
 
     <!-- ================= SCREEN 7: MEMORIES POLAROID WALL ================= -->
     <section id="screen-memories" class="screen">
-      <!-- Cutout Scrapbook Header Banner -->
-      <img src="assets/memories-header.png" alt="Memories" class="memories-header-img" />
+      <!-- Scrapbook Cutout Header Banner -->
+      <div class="scrapbook-banner-container">
+        <div class="banner-string-line"></div>
+        <span class="banner-sparkle left">✦</span>
+        <div class="banner-letters-row">
+          <div class="letter-card" style="--rot: -3deg;"><span>M</span></div>
+          <div class="letter-card" style="--rot: 2.5deg;"><span>E</span></div>
+          <div class="letter-card" style="--rot: -2deg;"><span>M</span></div>
+          <div class="letter-card" style="--rot: 3deg;"><span>O</span></div>
+          <div class="letter-card" style="--rot: -2.5deg;"><span>R</span></div>
+          <div class="letter-card" style="--rot: 2deg;"><span>I</span></div>
+          <div class="letter-card" style="--rot: -3deg;"><span>E</span></div>
+          <div class="letter-card" style="--rot: 1.5deg;"><span>S</span></div>
+        </div>
+        <span class="banner-sparkle right">✦</span>
+      </div>
 
       <!-- Top-left lacy gingham heart sticker -->
       <img src="assets/heart-lace.png" class="heart-lace-sticker" alt="Lace Heart" />
@@ -1029,7 +1198,20 @@
         <div class="notebook-scroll">
           <div class="script-heading">
             My fav person
-            <img src="assets/heart-glossy.png" class="heart-glossy-img" alt="Heart" />
+            <svg class="heart-glossy-svg" viewBox="0 0 36 36" width="34" height="34" aria-hidden="true">
+              <defs>
+                <radialGradient id="favHeartGrad" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#ff6b6b"/>
+                  <stop offset="50%" stop-color="#d32f2f"/>
+                  <stop offset="100%" stop-color="#8e0000"/>
+                </radialGradient>
+                <filter id="favHeartShadow" x="-20%" y="-20%" width="150%" height="150%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="2.5" flood-color="rgba(160, 20, 20, 0.4)"/>
+                </filter>
+              </defs>
+              <path d="M18,32 C18,32 3.5,21.5 3.5,11 C3.5,5.5 8,2 13,2 C16,2 17.5,3.8 18,4.5 C18.5,3.8 20,2 23,2 C28,2 32.5,5.5 32.5,11 C32.5,21.5 18,32 18,32 Z" fill="url(#favHeartGrad)" filter="url(#favHeartShadow)"/>
+              <ellipse cx="11.5" cy="8" rx="4" ry="2" transform="rotate(-30 11.5 8)" fill="rgba(255,255,255,0.65)"/>
+            </svg>
           </div>
           <div class="letter-body">
             <div class="letter-highlight">Dear bestie,</div>
@@ -1043,7 +1225,7 @@
       </div>
 
       <img id="img-shinchan-onesie" class="corner-sticker onesie-sticker" src="assets/shinchan-onesie.gif" alt="Shinchan" />
-      <button type="button" class="next-chevron" style="bottom: 22px; top: auto;" data-target="screen-gifts">&#10095;</button>
+      <button type="button" class="next-chevron" data-target="screen-gifts" title="Back to Gifts">&#10095;</button>
     </section>
 
     <!-- ================= SCREEN 9: FINAL WISH ================= -->
@@ -1064,6 +1246,10 @@
 
       <div class="final-wish-wrapper">
         <div class="final-wish-text" id="final-wish-copy"></div>
+      </div>
+
+      <div class="template-footer-note">
+        <a href="customize.html">✨ Want to make this card for your bestie? Click here to personalize & share!</a>
       </div>
 
       <img id="img-shinchan-final" class="corner-sticker final-sticker" src="assets/shinchan-final.gif" alt="Shinchan" />
@@ -1107,39 +1293,139 @@ I hope this year brings you everything you've been wishing for—happiness, succ
 No matter where life takes us, I hope we always stay this close and keep making memories together. Thank you for being the wonderful person you are and for making my life brighter every single day. Have the happiest birthday, and enjoy every moment of your special day. I love you so much! ❤️🎂`
       };
 
-      /* Populate basic elements */
-      document.getElementById('recipient-name').textContent = CONFIG.recipientName;
-      document.getElementById('card-wish-copy').textContent = CONFIG.cardShortWish;
-      document.getElementById('main-featured-photo').src = CONFIG.featuredPhoto;
+      /* Populate basic elements & polaroids */
+      function renderCardContent() {
+        document.getElementById('recipient-name').textContent = CONFIG.recipientName;
+        document.getElementById('card-wish-copy').textContent = CONFIG.cardShortWish;
+        document.getElementById('main-featured-photo').src = CONFIG.featuredPhoto;
 
-      document.getElementById('img-shinchan-dance').src = CONFIG.stickers.dance;
-      document.getElementById('img-shinchan-upset').src = CONFIG.stickers.upset;
-      document.getElementById('img-shinchan-shy').src = CONFIG.stickers.shy;
-      document.getElementById('img-shinchan-cheer').src = CONFIG.stickers.cheer;
-      document.getElementById('img-shinchan-balloon').src = CONFIG.stickers.balloon;
-      document.getElementById('img-shinchan-onesie').src = CONFIG.stickers.onesie;
-      document.getElementById('img-shinchan-final').src = CONFIG.stickers.final;
+        document.getElementById('img-shinchan-dance').src = CONFIG.stickers.dance;
+        document.getElementById('img-shinchan-upset').src = CONFIG.stickers.upset;
+        document.getElementById('img-shinchan-shy').src = CONFIG.stickers.shy;
+        document.getElementById('img-shinchan-cheer').src = CONFIG.stickers.cheer;
+        document.getElementById('img-shinchan-balloon').src = CONFIG.stickers.balloon;
+        document.getElementById('img-shinchan-onesie').src = CONFIG.stickers.onesie;
+        document.getElementById('img-shinchan-final').src = CONFIG.stickers.final;
 
-      /* Populate 5 memories polaroids with decorative ribbon bows */
-      const memoriesGrid = document.getElementById('memories-grid');
-      memoriesGrid.innerHTML = '';
-      CONFIG.memoryPhotos.forEach((url, idx) => {
-        const div = document.createElement('div');
-        // Frame 2 has a crisp white border, others have gingham
-        div.className = (idx === 1) ? 'mini-polaroid white-border' : 'mini-polaroid gingham-border';
-        
-        let bowHTML = '';
-        if (idx === 0) {
-          bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker left" alt="Bow" />';
-        } else if (idx === 2) {
-          bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker left" alt="Bow" />';
-        } else if (idx === 3) {
-          bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker right" alt="Bow" />';
+        /* Populate 5 memories polaroids with decorative ribbon bows */
+        const memoriesGrid = document.getElementById('memories-grid');
+        if (memoriesGrid) {
+          memoriesGrid.innerHTML = '';
+          CONFIG.memoryPhotos.forEach((url, idx) => {
+            const div = document.createElement('div');
+            // Frame 2 has a crisp white border, others have gingham
+            div.className = (idx === 1) ? 'mini-polaroid white-border' : 'mini-polaroid gingham-border';
+            
+            let bowHTML = '';
+            if (idx === 0) {
+              bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker left" alt="Bow" />';
+            } else if (idx === 2) {
+              bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker left" alt="Bow" />';
+            } else if (idx === 3) {
+              bowHTML = '<img src="assets/ribbon-bow.png" class="bow-sticker right" alt="Bow" />';
+            }
+
+            div.innerHTML = `${bowHTML}<img src="${url}" class="memory-photo-img" alt="Memory ${idx + 1}" />`;
+            memoriesGrid.appendChild(div);
+          });
+        }
+      }
+
+      renderCardContent();
+
+      /* =====================================================================
+         🌐 DYNAMIC CARD LOADER FOR SHARED LINKS (?card=xxx or #data=xxx)
+         ===================================================================== */
+      function showCardLoader(show) {
+        let loader = document.getElementById('card-loading-screen');
+        if (!loader && show) {
+          loader = document.createElement('div');
+          loader.id = 'card-loading-screen';
+          loader.innerHTML = `
+            <div class="card-loader-box">
+              <img src="assets/shinchan-dance.gif" alt="Shinchan" />
+              <div class="card-loader-text">Opening your birthday surprise... 💌</div>
+            </div>
+          `;
+          document.body.appendChild(loader);
+        }
+        if (loader) {
+          loader.style.opacity = show ? '1' : '0';
+          loader.style.pointerEvents = show ? 'all' : 'none';
+          if (!show) {
+            setTimeout(() => {
+              if (loader && loader.parentNode) loader.remove();
+            }, 450);
+          }
+        }
+      }
+
+      function applyCustomData(data) {
+        if (!data || typeof data !== 'object') return;
+        // In custom shared card mode: hide make your own card controls
+        document.documentElement.classList.add('is-custom-card');
+        document.querySelectorAll('.template-launcher-pill, .template-footer-note').forEach(el => {
+          el.style.display = 'none';
+        });
+        if (data.recipientName) CONFIG.recipientName = data.recipientName;
+        if (data.cardShortWish) CONFIG.cardShortWish = data.cardShortWish;
+        if (data.finalScreenWish) CONFIG.finalScreenWish = data.finalScreenWish;
+        if (data.featuredPhoto) CONFIG.featuredPhoto = data.featuredPhoto;
+        if (Array.isArray(data.memoryPhotos) && data.memoryPhotos.length > 0) {
+          CONFIG.memoryPhotos = data.memoryPhotos;
+        }
+        if (data.letterText) CONFIG.letterText = data.letterText;
+        renderCardContent();
+      }
+
+      window.applyCustomData = applyCustomData;
+      if (window.__EMBEDDED_CARD_DATA__) {
+        applyCustomData(window.__EMBEDDED_CARD_DATA__);
+      }
+
+      async function loadSharedCard() {
+        const urlParams = new URLSearchParams(window.location.search);
+        let cardId = urlParams.get('card') || urlParams.get('c');
+
+        // Check hash #card=xxx or #c=xxx
+        if (!cardId && window.location.hash) {
+          const m = window.location.hash.match(/[#&](card|c)=([a-zA-Z0-9_-]+)/);
+          if (m) cardId = m[2];
         }
 
-        div.innerHTML = `${bowHTML}<img src="${url}" alt="Memory ${idx + 1}" />`;
-        memoriesGrid.appendChild(div);
-      });
+        // Direct JSON in hash? (e.g. #data=...)
+        if (!cardId && window.location.hash.includes('data=')) {
+          try {
+            const raw = decodeURIComponent(window.location.hash.split('data=')[1].split('&')[0]);
+            const parsed = JSON.parse(raw);
+            applyCustomData(parsed);
+            return;
+          } catch (e) {
+            console.warn('Could not parse hash data:', e);
+          }
+        }
+
+        if (cardId) {
+          showCardLoader(true);
+          try {
+            const res = await fetch(`https://pastefy.app/${cardId}/raw`);
+            if (res.ok) {
+              const text = await res.text();
+              const parsed = JSON.parse(text);
+              applyCustomData(parsed);
+            } else {
+              console.warn('Card not found on Pastefy, HTTP:', res.status);
+            }
+          } catch (err) {
+            console.error('Error fetching custom card:', err);
+          } finally {
+            showCardLoader(false);
+          }
+        }
+      }
+
+      // Load shared custom card if present in URL
+      loadSharedCard();
 
       /* =====================================================================
          🎬 SCREEN NAVIGATION & TYPEWRITER ANIMATION ENGINE
